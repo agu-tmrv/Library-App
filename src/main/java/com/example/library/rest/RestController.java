@@ -34,13 +34,13 @@ public class RestController {
         return book;
     }
 
-    @PutMapping("books")
+    @PutMapping("/books")
     public Book updateBook(@RequestBody Book book) {
         bookService.save(book);
         return book;
     }
 
-    @DeleteMapping("books/{id}")
+    @DeleteMapping("/books/{id}")
     public void deleteBook(@PathVariable int id) {
         bookService.delete(id);
     }
