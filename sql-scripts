@@ -1,7 +1,23 @@
-CREATE TABLE book (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    cost VARCHAR(50) NOT NULL,
-    author VARCHAR(255) NOT NULL,
-    genre VARCHAR(100) NOT NULL
-);
+CREATE TABLE `users` (
+  `user_id` varchar(50) NOT NULL,
+  `pw` char(68) NOT NULL,
+  `active` tinyint NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+INSERT INTO `users`
+VALUES
+('admin','{noop}admin', 1);
+
+CREATE TABLE `roles` (
+  `user_id` varchar(50) NOT NULL,
+  `role` varchar(50) NOT NULL,
+  UNIQUE KEY `authorities5_idx_1` (`user_id`,`role`),
+  CONSTRAINT `authorities5_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+INSERT INTO `roles`
+VALUES
+('admin','ROLE_ADMIN');
